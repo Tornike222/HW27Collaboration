@@ -37,6 +37,14 @@ class SolarResourceViewController: UIViewController {
         return button
     }()
     
+    let solarDataLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    var solarData: SolarData?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -46,9 +54,10 @@ class SolarResourceViewController: UIViewController {
         setupLabel()
         setupTextField()
         setupButton()
+        setupDataLabel()
     }
     
-
+    
     //MARK: - Initialization VM
     init(viewModel: SolarResourceViewModel){
         self.viewModel = viewModel
@@ -62,10 +71,10 @@ class SolarResourceViewController: UIViewController {
     func addBackground() {
         view.addSubview(backgroundImageView)
         NSLayoutConstraint.activate([
-        backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-        backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-        backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-        backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
     
@@ -76,7 +85,7 @@ class SolarResourceViewController: UIViewController {
             addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             addressLabel.heightAnchor.constraint(equalToConstant: 50)
-            ])
+        ])
         addressLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
         addressLabel.textColor = .white
         addressLabel.text = "Enter your address:"
@@ -89,7 +98,7 @@ class SolarResourceViewController: UIViewController {
             addressTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             addressTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             addressTextField.heightAnchor.constraint(equalToConstant: 50)
-            ])
+        ])
         
         addressTextField.placeholder = "e.g. konkretuli misamarti"
     }
@@ -101,10 +110,55 @@ class SolarResourceViewController: UIViewController {
             solarButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             solarButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             solarButton.heightAnchor.constraint(equalToConstant: 50)
-            ])
+        ])
         solarButton.setTitle("Let's go", for: .normal)
+//        solarButton.addAction(UIAction.init(handler: { _ in
+//            self.viewModel.fetchSolarData(with: self.addressTextField.text)
+//        }), for: .touchUpInside)
+//        
+//    }
+        solarButton.addAction(UIAction(handler: { [weak self] _ in
+                    self?.fetchAndDisplaySolarData()
+                }), for: .touchUpInside)
+            }
+    
+    func setupDataLabel() {
+        view.addSubview(solarDataLabel)
+        NSLayoutConstraint.activate([
+            solarDataLabel.topAnchor.constraint(equalTo: solarButton.bottomAnchor, constant: 20),
+            solarDataLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            solarDataLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+        ])
+        solarDataLabel.textColor = .white
     }
-}
+    
+    func fetchAndDisplaySolarData() {
+            viewModel.fetchSolarData(with: addressTextField.text) { [weak self] solarData in
+                guard let self = self, let solarData = solarData else {
+                    DispatchQueue.main.async {
+                        self?.solarDataLabel.text = "Failed to fetch solar data."
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.updateSolarDataLabel(with: solarData)
+                }
+            }
+        }
+        
+        func updateSolarDataLabel(with solarData: SolarData) {
+            let avgDni = solarData.outputs.avgDni.annual
+            let avgGhi = solarData.outputs.avgGhi.annual
+            let avgLatTilt = solarData.outputs.avgLatTilt.annual
+            self.solarDataLabel.text = """
+            Average DNI: \(avgDni)
+            Average GHI: \(avgGhi)
+            Average Latitude Tilt: \(avgLatTilt)
+            """
+        }
+    }
+
+
 
 #Preview {
     SolarResourceViewController(viewModel: SolarResourceViewModel())
