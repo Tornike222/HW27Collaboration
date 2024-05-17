@@ -12,6 +12,15 @@ final class AirQualityViewController: UIViewController {
     var viewModel: AirQualityViewModel
     
     // MARK: - UI Components
+    
+    private let backgroundImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "BackgroundImage")
+        image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     private let stackViewForQualityTitles: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -60,10 +69,21 @@ final class AirQualityViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setUpUI() {
+        addBackgroundImage()
         addStackViewForQualityTitles()
         addButtonForAirQuality()
         addStackViewForQualityInfoLabels()
         updateTextFields()
+    }
+    
+    private func addBackgroundImage() {
+        view.addSubview(backgroundImage)
+        NSLayoutConstraint.activate([
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     private func addStackViewForQualityTitles() {
@@ -103,14 +123,12 @@ final class AirQualityViewController: UIViewController {
     // MARK: Methods
     private func addActionToButton() {
         buttonForAirQuality.addAction(UIAction(handler: { _ in
-            guard let country = self.countryTextField.text, !country.isEmpty,
-                  let state = self.stateTextField.text, !state.isEmpty,
-                  let city = self.cityTextField.text, !city.isEmpty else {
-                self.showError(message: "Please fill in all fields")
-                return
-            }
-            self.viewModel.fetchAirQualityData(city: city, state: state, country: country)
-        }), for: .touchUpInside)
+            self.viewModel.unwrapData(city: self.cityTextField.text, state: self.stateTextField.text, country: self.countryTextField.text)
+         }), for: .touchUpInside)
+    }
+    
+    func showAllert() {
+        self.showError(message: "Please fill in all fields")
     }
     
     private func updateStackViewForQualityInfoLabels() {
@@ -120,9 +138,11 @@ final class AirQualityViewController: UIViewController {
             let titleLabel = UILabel()
             titleLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
             titleLabel.text = info.title
+            titleLabel.textColor = .white
             let valueLabel = UILabel()
             valueLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
             valueLabel.text = info.value
+            valueLabel.textColor = .white
             let detailStack = UIStackView()
             detailStack.axis = .horizontal
             detailStack.distribution = .equalCentering
@@ -136,6 +156,7 @@ final class AirQualityViewController: UIViewController {
     private func addDetailsToStackViewForQualityTitles(title: String, placeholder: String) -> CustomTextField {
         let titleLabel = UILabel()
         titleLabel.font = UIFont(name: "FiraGO-Medium", size: 14)
+        titleLabel.textColor = .white
         titleLabel.text = title
         
         let textField = CustomTextField()
