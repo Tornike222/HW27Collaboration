@@ -11,11 +11,18 @@ class SolarResourceViewController: UIViewController {
     //MARK: - Properties
     var viewModel: SolarResourceViewModel!
 
+    
+    
+    
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
     }
+    
+    
+    
     
     //MARK: - Initialization VM
     init(viewModel: SolarResourceViewModel){
