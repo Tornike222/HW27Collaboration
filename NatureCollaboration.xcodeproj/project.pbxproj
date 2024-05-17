@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B2686E122BF6BDCA00D663C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */; };
+		B2686E142BF6BDCA00D663C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */; };
+		B2686E162BF6BDCA00D663C5 /* AirQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */; };
+		B2686E1B2BF6BDCD00D663C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2686E1A2BF6BDCD00D663C5 /* Assets.xcassets */; };
+		B2686E1E2BF6BDCD00D663C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2686E1C2BF6BDCD00D663C5 /* LaunchScreen.storyboard */; };
+		B2686E272BF6BE1A00D663C5 /* NetworkPackage in Frameworks */ = {isa = PBXBuildFile; productRef = B2686E262BF6BE1A00D663C5 /* NetworkPackage */; };
+		B2686E2A2BF6BE4800D663C5 /* Hex in Frameworks */ = {isa = PBXBuildFile; productRef = B2686E292BF6BE4800D663C5 /* Hex */; };
+		B2686E322BF6C6AF00D663C5 /* AirQualityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E312BF6C6AF00D663C5 /* AirQualityViewModel.swift */; };
+		B2686E352BF6C7E000D663C5 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E342BF6C7E000D663C5 /* WeatherViewController.swift */; };
+		B2686E382BF6C82100D663C5 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E372BF6C82100D663C5 /* WeatherViewModel.swift */; };
+		B2686E3A2BF6C8AA00D663C5 /* SpecieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E392BF6C8AA00D663C5 /* SpecieViewController.swift */; };
+		B2686E3D2BF6C92900D663C5 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E3C2BF6C92900D663C5 /* SpecieViewModel.swift */; };
+		B2686E402BF6C96100D663C5 /* SolarResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E3F2BF6C96100D663C5 /* SolarResourceViewController.swift */; };
+		B2686E432BF6C98B00D663C5 /* SolarResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E422BF6C98B00D663C5 /* SolarResourceViewModel.swift */; };
+		B2686E452BF6C9BA00D663C5 /* PopulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E442BF6C9B900D663C5 /* PopulationViewController.swift */; };
+		B2686E482BF6C9D200D663C5 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E472BF6C9D200D663C5 /* PopulationViewModel.swift */; };
+		B2686E4B2BF6D06B00D663C5 /* FiraGO-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2686E492BF6D06900D663C5 /* FiraGO-Bold.ttf */; };
+		B2686E4C2BF6D06B00D663C5 /* FiraGO-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2686E4A2BF6D06B00D663C5 /* FiraGO-Medium.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B2686E0E2BF6BDCA00D663C5 /* NatureCollaboration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NatureCollaboration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityViewController.swift; sourceTree = "<group>"; };
+		B2686E1A2BF6BDCD00D663C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B2686E1D2BF6BDCD00D663C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B2686E1F2BF6BDCD00D663C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2686E312BF6C6AF00D663C5 /* AirQualityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityViewModel.swift; sourceTree = "<group>"; };
+		B2686E342BF6C7E000D663C5 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		B2686E372BF6C82100D663C5 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		B2686E392BF6C8AA00D663C5 /* SpecieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewController.swift; sourceTree = "<group>"; };
+		B2686E3C2BF6C92900D663C5 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
+		B2686E3F2BF6C96100D663C5 /* SolarResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceViewController.swift; sourceTree = "<group>"; };
+		B2686E422BF6C98B00D663C5 /* SolarResourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceViewModel.swift; sourceTree = "<group>"; };
+		B2686E442BF6C9B900D663C5 /* PopulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewController.swift; sourceTree = "<group>"; };
+		B2686E472BF6C9D200D663C5 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
+		B2686E492BF6D06900D663C5 /* FiraGO-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraGO-Bold.ttf"; sourceTree = "<group>"; };
+		B2686E4A2BF6D06B00D663C5 /* FiraGO-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraGO-Medium.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B2686E0B2BF6BDCA00D663C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2686E2A2BF6BE4800D663C5 /* Hex in Frameworks */,
+				B2686E272BF6BE1A00D663C5 /* NetworkPackage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B2686E052BF6BDCA00D663C5 = {
+			isa = PBXGroup;
+			children = (
+				B2686E102BF6BDCA00D663C5 /* NatureCollaboration */,
+				B2686E0F2BF6BDCA00D663C5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B2686E0F2BF6BDCA00D663C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E0E2BF6BDCA00D663C5 /* NatureCollaboration.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2686E102BF6BDCA00D663C5 /* NatureCollaboration */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E2B2BF6BFBA00D663C5 /* App */,
+				B2686E2F2BF6C15200D663C5 /* Scenes */,
+				B2686E2C2BF6BFE400D663C5 /* SupportingFiles */,
+			);
+			path = NatureCollaboration;
+			sourceTree = "<group>";
+		};
+		B2686E2B2BF6BFBA00D663C5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */,
+				B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B2686E2C2BF6BFE400D663C5 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E4D2BF6D07200D663C5 /* Fonts */,
+				B2686E2D2BF6BFF200D663C5 /* Resources */,
+				B2686E2E2BF6C00200D663C5 /* Launch */,
+				B2686E1F2BF6BDCD00D663C5 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B2686E2D2BF6BFF200D663C5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E1A2BF6BDCD00D663C5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B2686E2E2BF6C00200D663C5 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E1C2BF6BDCD00D663C5 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		B2686E2F2BF6C15200D663C5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E302BF6C64100D663C5 /* AirQualityPage */,
+				B2686E362BF6C7EA00D663C5 /* WeatherPage */,
+				B2686E3B2BF6C8F000D663C5 /* SpeciePage */,
+				B2686E412BF6C96800D663C5 /* SolarResourcePage */,
+				B2686E462BF6C9BF00D663C5 /* PopulationPage */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		B2686E302BF6C64100D663C5 /* AirQualityPage */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */,
+				B2686E312BF6C6AF00D663C5 /* AirQualityViewModel.swift */,
+			);
+			path = AirQualityPage;
+			sourceTree = "<group>";
+		};
+		B2686E362BF6C7EA00D663C5 /* WeatherPage */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E342BF6C7E000D663C5 /* WeatherViewController.swift */,
+				B2686E372BF6C82100D663C5 /* WeatherViewModel.swift */,
+			);
+			path = WeatherPage;
+			sourceTree = "<group>";
+		};
+		B2686E3B2BF6C8F000D663C5 /* SpeciePage */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E392BF6C8AA00D663C5 /* SpecieViewController.swift */,
+				B2686E3C2BF6C92900D663C5 /* SpecieViewModel.swift */,
+			);
+			path = SpeciePage;
+			sourceTree = "<group>";
+		};
+		B2686E412BF6C96800D663C5 /* SolarResourcePage */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E3F2BF6C96100D663C5 /* SolarResourceViewController.swift */,
+				B2686E422BF6C98B00D663C5 /* SolarResourceViewModel.swift */,
+			);
+			path = SolarResourcePage;
+			sourceTree = "<group>";
+		};
+		B2686E462BF6C9BF00D663C5 /* PopulationPage */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E442BF6C9B900D663C5 /* PopulationViewController.swift */,
+				B2686E472BF6C9D200D663C5 /* PopulationViewModel.swift */,
+			);
+			path = PopulationPage;
+			sourceTree = "<group>";
+		};
+		B2686E4D2BF6D07200D663C5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E492BF6D06900D663C5 /* FiraGO-Bold.ttf */,
+				B2686E4A2BF6D06B00D663C5 /* FiraGO-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B2686E0D2BF6BDCA00D663C5 /* NatureCollaboration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2686E222BF6BDCD00D663C5 /* Build configuration list for PBXNativeTarget "NatureCollaboration" */;
+			buildPhases = (
+				B2686E0A2BF6BDCA00D663C5 /* Sources */,
+				B2686E0B2BF6BDCA00D663C5 /* Frameworks */,
+				B2686E0C2BF6BDCA00D663C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NatureCollaboration;
+			packageProductDependencies = (
+				B2686E262BF6BE1A00D663C5 /* NetworkPackage */,
+				B2686E292BF6BE4800D663C5 /* Hex */,
+			);
+			productName = NatureCollaboration;
+			productReference = B2686E0E2BF6BDCA00D663C5 /* NatureCollaboration.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B2686E062BF6BDCA00D663C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					B2686E0D2BF6BDCA00D663C5 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = B2686E092BF6BDCA00D663C5 /* Build configuration list for PBXProject "NatureCollaboration" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B2686E052BF6BDCA00D663C5;
+			packageReferences = (
+				B2686E252BF6BE1A00D663C5 /* XCRemoteSwiftPackageReference "NetworkPackage" */,
+				B2686E282BF6BE4800D663C5 /* XCRemoteSwiftPackageReference "hex" */,
+			);
+			productRefGroup = B2686E0F2BF6BDCA00D663C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B2686E0D2BF6BDCA00D663C5 /* NatureCollaboration */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B2686E0C2BF6BDCA00D663C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2686E4B2BF6D06B00D663C5 /* FiraGO-Bold.ttf in Resources */,
+				B2686E1E2BF6BDCD00D663C5 /* LaunchScreen.storyboard in Resources */,
+				B2686E1B2BF6BDCD00D663C5 /* Assets.xcassets in Resources */,
+				B2686E4C2BF6D06B00D663C5 /* FiraGO-Medium.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B2686E0A2BF6BDCA00D663C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2686E3A2BF6C8AA00D663C5 /* SpecieViewController.swift in Sources */,
+				B2686E162BF6BDCA00D663C5 /* AirQualityViewController.swift in Sources */,
+				B2686E452BF6C9BA00D663C5 /* PopulationViewController.swift in Sources */,
+				B2686E382BF6C82100D663C5 /* WeatherViewModel.swift in Sources */,
+				B2686E402BF6C96100D663C5 /* SolarResourceViewController.swift in Sources */,
+				B2686E322BF6C6AF00D663C5 /* AirQualityViewModel.swift in Sources */,
+				B2686E122BF6BDCA00D663C5 /* AppDelegate.swift in Sources */,
+				B2686E432BF6C98B00D663C5 /* SolarResourceViewModel.swift in Sources */,
+				B2686E3D2BF6C92900D663C5 /* SpecieViewModel.swift in Sources */,
+				B2686E142BF6BDCA00D663C5 /* SceneDelegate.swift in Sources */,
+				B2686E352BF6C7E000D663C5 /* WeatherViewController.swift in Sources */,
+				B2686E482BF6C9D200D663C5 /* PopulationViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B2686E1C2BF6BDCD00D663C5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2686E1D2BF6BDCD00D663C5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B2686E202BF6BDCD00D663C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B2686E212BF6BDCD00D663C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B2686E232BF6BDCD00D663C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NatureCollaboration/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ge.TBCAcademy.NatureCollaboration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B2686E242BF6BDCD00D663C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NatureCollaboration/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ge.TBCAcademy.NatureCollaboration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B2686E092BF6BDCA00D663C5 /* Build configuration list for PBXProject "NatureCollaboration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2686E202BF6BDCD00D663C5 /* Debug */,
+				B2686E212BF6BDCD00D663C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2686E222BF6BDCD00D663C5 /* Build configuration list for PBXNativeTarget "NatureCollaboration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2686E232BF6BDCD00D663C5 /* Debug */,
+				B2686E242BF6BDCD00D663C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B2686E252BF6BE1A00D663C5 /* XCRemoteSwiftPackageReference "NetworkPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Tornike222/NetworkPackage";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		B2686E282BF6BE4800D663C5 /* XCRemoteSwiftPackageReference "hex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/toddheasley/hex";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B2686E262BF6BE1A00D663C5 /* NetworkPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2686E252BF6BE1A00D663C5 /* XCRemoteSwiftPackageReference "NetworkPackage" */;
+			productName = NetworkPackage;
+		};
+		B2686E292BF6BE4800D663C5 /* Hex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2686E282BF6BE4800D663C5 /* XCRemoteSwiftPackageReference "hex" */;
+			productName = Hex;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B2686E062BF6BDCA00D663C5 /* Project object */;
+}
