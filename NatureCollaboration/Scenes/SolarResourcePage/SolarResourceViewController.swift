@@ -25,6 +25,17 @@ class SolarResourceViewController: UIViewController {
         return label
     }()
     
+    let addressTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    let solarButton: CustomButton = {
+        let button = CustomButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     
     //MARK: - Lifecycle
@@ -32,6 +43,9 @@ class SolarResourceViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         addBackground()
+        setupLabel()
+        setupTextField()
+        setupButton()
     }
     
 
@@ -53,6 +67,42 @@ class SolarResourceViewController: UIViewController {
         backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
         backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
+    }
+    
+    func setupLabel() {
+        view.addSubview(addressLabel)
+        NSLayoutConstraint.activate([
+            addressLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            addressLabel.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        addressLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
+        addressLabel.textColor = .white
+        addressLabel.text = "Enter your address:"
+    }
+    
+    func setupTextField() {
+        view.addSubview(addressTextField)
+        NSLayoutConstraint.activate([
+            addressTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            addressTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            addressTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            addressTextField.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        
+        addressTextField.placeholder = "e.g. konkretuli misamarti"
+    }
+    
+    func setupButton() {
+        view.addSubview(solarButton)
+        NSLayoutConstraint.activate([
+            solarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
+            solarButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            solarButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            solarButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        solarButton.setTitle("Let's go", for: .normal)
     }
 }
 
