@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08BE438A2BF7ABA10081439C /* AirQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE43892BF7ABA10081439C /* AirQualityModel.swift */; };
 		B2686E122BF6BDCA00D663C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */; };
 		B2686E142BF6BDCA00D663C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */; };
 		B2686E162BF6BDCA00D663C5 /* AirQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08BE43892BF7ABA10081439C /* AirQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityModel.swift; sourceTree = "<group>"; };
 		B2686E0E2BF6BDCA00D663C5 /* NatureCollaboration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NatureCollaboration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */,
 				B2686E312BF6C6AF00D663C5 /* AirQualityViewModel.swift */,
+				08BE43892BF7ABA10081439C /* AirQualityModel.swift */,
 			);
 			path = AirQualityPage;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				B2686E162BF6BDCA00D663C5 /* AirQualityViewController.swift in Sources */,
 				B2686E452BF6C9BA00D663C5 /* PopulationViewController.swift in Sources */,
 				B2686E532BF7833100D663C5 /* UIImageViewExtension.swift in Sources */,
+				08BE438A2BF7ABA10081439C /* AirQualityModel.swift in Sources */,
 				B2686E382BF6C82100D663C5 /* WeatherViewModel.swift in Sources */,
 				B2686E402BF6C96100D663C5 /* SolarResourceViewController.swift in Sources */,
 				B2686E322BF6C6AF00D663C5 /* AirQualityViewModel.swift in Sources */,
