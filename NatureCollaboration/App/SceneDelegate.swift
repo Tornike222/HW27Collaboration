@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.items?[4].title = "Population"
         
         
-        tabBarController.tabBar.unselectedItemTintColor = .darkGray
+        tabBarController.tabBar.unselectedItemTintColor = .white
 
         
         window = UIWindow(windowScene: scene)
