@@ -60,30 +60,48 @@ final class AirQualityViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setUpUI() {
+        addStackViewForQualityTitles()
+        addButtonForAirQuality()
+        addStackViewForQualityInfoLabels()
+        updateTextFields()
+    }
+    
+    private func addStackViewForQualityTitles() {
         view.addSubview(stackViewForQualityTitles)
-        view.addSubview(buttonForAirQuality)
-        view.addSubview(stackViewForQualityInfoLabels)
         NSLayoutConstraint.activate([
             stackViewForQualityTitles.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackViewForQualityTitles.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            stackViewForQualityTitles.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            stackViewForQualityTitles.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
+        ])
+    }
+    
+    private func addButtonForAirQuality() {
+        view.addSubview(buttonForAirQuality)
+        NSLayoutConstraint.activate([
             buttonForAirQuality.topAnchor.constraint(equalTo: stackViewForQualityTitles.bottomAnchor, constant: 50),
             buttonForAirQuality.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonForAirQuality.widthAnchor.constraint(equalToConstant: 200),
-            buttonForAirQuality.heightAnchor.constraint(equalToConstant: 50),
+            buttonForAirQuality.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func addStackViewForQualityInfoLabels() {
+        view.addSubview(stackViewForQualityInfoLabels)
+        NSLayoutConstraint.activate([
             stackViewForQualityInfoLabels.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackViewForQualityInfoLabels.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             stackViewForQualityInfoLabels.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
         ])
-        
+    }
+    
+    private func updateTextFields() {
         countryTextField = addDetailsToStackViewForQualityTitles(title: "Country :", placeholder: "e.g. Georgia")
         stateTextField = addDetailsToStackViewForQualityTitles(title: "State :", placeholder: "e.g. Imereti")
         cityTextField = addDetailsToStackViewForQualityTitles(title: "City :", placeholder: "e.g. Kutaisi")
-        
     }
     
     // MARK: Methods
-    func addActionToButton() {
+    private func addActionToButton() {
         buttonForAirQuality.addAction(UIAction(handler: { _ in
             guard let country = self.countryTextField.text, !country.isEmpty,
                   let state = self.stateTextField.text, !state.isEmpty,
@@ -100,18 +118,17 @@ final class AirQualityViewController: UIViewController {
         
         for info in viewModel.airQualityInfo {
             let titleLabel = UILabel()
-            titleLabel.font = UIFont(name: "FiraGO-Medium", size: 14)
+            titleLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
             titleLabel.text = info.title
             let valueLabel = UILabel()
-            valueLabel.font = UIFont(name: "FiraGO-Medium", size: 14)
+            valueLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
             valueLabel.text = info.value
             let detailStack = UIStackView()
             detailStack.axis = .horizontal
             detailStack.distribution = .equalCentering
-            detailStack.spacing = 10
+            detailStack.spacing = 20
             detailStack.addArrangedSubview(titleLabel)
             detailStack.addArrangedSubview(valueLabel)
-            
             stackViewForQualityInfoLabels.addArrangedSubview(detailStack)
         }
     }
