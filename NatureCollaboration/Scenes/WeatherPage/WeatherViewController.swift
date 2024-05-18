@@ -5,17 +5,6 @@ final class WeatherViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: WeatherViewModel
     
-    // MARK: - Initializers
-    init(viewModel: WeatherViewModel = WeatherViewModel()) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - UI Components
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -89,6 +78,15 @@ final class WeatherViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    // MARK: - Initializers
+    init(viewModel: WeatherViewModel){
+            self.viewModel = viewModel
+            super.init(nibName: nil, bundle: nil)
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
