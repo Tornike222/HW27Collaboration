@@ -17,15 +17,15 @@ struct Cities: Decodable {
 }
 
 //MARK: - SpeciesModel
-struct SpeciesModel: Decodable, Hashable {
+struct SpeciesModel: Decodable {
     let results: [Species]
 }
 
-struct Species: Decodable, Hashable {
+struct Species: Decodable {
     let taxon: TaxonDetails
 }
 
-struct TaxonDetails: Decodable, Hashable {
+struct TaxonDetails: Decodable {
     let name: String?
     let defaultPhoto: PhotoDetails
     let wikipediaUrl: String?
@@ -39,7 +39,7 @@ struct TaxonDetails: Decodable, Hashable {
     }
 }
 
-struct PhotoDetails: Decodable, Hashable {
+struct PhotoDetails: Decodable {
     let mediumUrl: String?
     let attribution: String?
 
