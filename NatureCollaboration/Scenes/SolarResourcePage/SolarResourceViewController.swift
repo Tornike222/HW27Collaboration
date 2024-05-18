@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SolarResourceViewController: UIViewController {
+final class SolarResourceViewController: UIViewController {
+    
     //MARK: - Properties
     var viewModel: SolarResourceViewModel!
     
@@ -64,7 +65,7 @@ class SolarResourceViewController: UIViewController {
     }
     
     //MARK: - setupUI
-    func setupUI() {
+    private func setupUI() {
         addSolarBackground()
         addSolarLabel()
         addSolarTextField()
@@ -72,7 +73,7 @@ class SolarResourceViewController: UIViewController {
         addSolarDataLabel()
     }
     
-    func addSolarBackground() {
+    private func addSolarBackground() {
         view.addSubview(backgroundImageView)
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
@@ -82,7 +83,7 @@ class SolarResourceViewController: UIViewController {
         ])
     }
     
-    func addSolarLabel() {
+    private func addSolarLabel() {
         view.addSubview(addressLabel)
         NSLayoutConstraint.activate([
             addressLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
@@ -95,7 +96,7 @@ class SolarResourceViewController: UIViewController {
         addressLabel.text = "Enter your address:"
     }
     
-    func addSolarTextField() {
+    private func addSolarTextField() {
         view.addSubview(addressTextField)
         NSLayoutConstraint.activate([
             addressTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
@@ -104,10 +105,11 @@ class SolarResourceViewController: UIViewController {
             addressTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        addressTextField.placeholder = "e.g. konkretuli misamarti"
+        addressTextField.placeholder = "e.g. 1600 Pennsylvania Avenue NW, Washington, DC 20500"
+        addressTextField.font = UIFont(name: "FiraGO-Medium", size: 12)
     }
     
-    func addSolarButton() {
+    private func addSolarButton() {
         view.addSubview(solarButton)
         NSLayoutConstraint.activate([
             solarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
@@ -116,17 +118,14 @@ class SolarResourceViewController: UIViewController {
             solarButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         solarButton.setTitle("Let's go", for: .normal)
-        //        solarButton.addAction(UIAction.init(handler: { _ in
-        //            self.viewModel.fetchSolarData(with: self.addressTextField.text)
-        //        }), for: .touchUpInside)
-        //
-        //    }
-        solarButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.fetchAndDisplaySolarData()
+        solarButton.addAction(UIAction.init(handler: { [weak self] _ in
+            self?.viewModel.formatSolarData(with: self?.addressTextField.text) { [weak self] solarDataText in
+                self?.solarDataLabel.text = solarDataText
+            }
         }), for: .touchUpInside)
     }
     
-    func addSolarDataLabel() {
+    private func addSolarDataLabel() {
         view.addSubview(solarDataLabel)
         NSLayoutConstraint.activate([
             solarDataLabel.topAnchor.constraint(equalTo: solarButton.bottomAnchor, constant: 30),
@@ -135,14 +134,6 @@ class SolarResourceViewController: UIViewController {
         ])
         solarDataLabel.textColor = .white
         solarDataLabel.font = UIFont(name: "FiraGO-Medium", size: 16)
-    }
-    
-    func fetchAndDisplaySolarData() {
-        viewModel.formatSolarData(with: addressTextField.text) { [weak self] solarDataText in
-            DispatchQueue.main.async {
-                self?.solarDataLabel.text = solarDataText
-            }
-        }
     }
 }
 

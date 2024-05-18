@@ -33,9 +33,9 @@ final class SolarResourceViewModel {
                 completion("Failed to fetch data")
                 return
             }
-            let averageDNI = solarData.outputs.avgDni.annual
-            let averageGHI = solarData.outputs.avgGhi.annual
-            let averageLatTilt = solarData.outputs.avgLatTilt.annual
+            let averageDNI = solarData.outputs?.avgDni?.annual ?? 0.0
+            let averageGHI = solarData.outputs?.avgGhi?.annual ?? 0.0
+            let averageLatTilt = solarData.outputs?.avgLatTilt?.annual ?? 0.0
             let solarDataText = """
                 Average Direct Normal Irradiance: \(averageDNI)
                 Average Global Horizontal Irradiance: \(averageGHI)
