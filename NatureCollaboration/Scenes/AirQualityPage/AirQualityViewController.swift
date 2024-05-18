@@ -161,17 +161,17 @@ final class AirQualityViewController: UIViewController {
     private func addStackViewForQualityInfoLabels() {
         view.addSubview(stackViewForQualityInfoLabels)
         NSLayoutConstraint.activate([
-            stackViewForQualityInfoLabels.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackViewForQualityInfoLabels.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackViewForQualityInfoLabels.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
+            stackViewForQualityInfoLabels.leadingAnchor.constraint(equalTo: viewForStack.leadingAnchor, constant: 20),
+            stackViewForQualityInfoLabels.trailingAnchor.constraint(equalTo: viewForStack.trailingAnchor, constant: -20),
+            stackViewForQualityInfoLabels.bottomAnchor.constraint(equalTo: viewForStack.bottomAnchor, constant: -10)
         ])
     }
     
     private func addViewForStack() {
         view.addSubview(viewForStack)
         NSLayoutConstraint.activate([
-            viewForStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            viewForStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            viewForStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            viewForStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             viewForStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -140),
             viewForStack.heightAnchor.constraint(equalToConstant: 130)
         ])
