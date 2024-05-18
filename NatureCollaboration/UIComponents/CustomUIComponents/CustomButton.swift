@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomButton: UIButton{
+final class CustomButton: UIButton{
     //MARK: - Override
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,9 +21,9 @@ class CustomButton: UIButton{
         touch()
     }
     //MARK: - Functions
-    func setupButton(){
+    private func setupButton(){
         var config = Configuration.plain()
-        let font = UIFont(name: "FiraGO-Regular", size: 13) ?? UIFont.systemFont(ofSize: 15)
+        let font = UIFont(name: "FiraGO-Medium", size: 13) ?? UIFont.systemFont(ofSize: 15)
         let attributedTitle = NSAttributedString(string: "", attributes: [.font: font])
         config.attributedTitle = AttributedString(attributedTitle)
         config.contentInsets =  NSDirectionalEdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20)
@@ -35,7 +35,7 @@ class CustomButton: UIButton{
         setTitleColor(.white, for: .normal)
     }
     
-    func touch(){
+    private func touch(){
         addAction(UIAction(handler: { _ in
             self.buttonTouchedDown()
         }), for: .touchDown)
@@ -45,12 +45,12 @@ class CustomButton: UIButton{
         }), for: .touchUpInside)
     }
     
-    func buttonTouchedDown(){
+    private func buttonTouchedDown(){
         tintColor = .white
         layer.opacity = 0.5
     }
     
-    func buttonTouchedUp(){
+    private func buttonTouchedUp(){
         layer.opacity = 1
     }
     
