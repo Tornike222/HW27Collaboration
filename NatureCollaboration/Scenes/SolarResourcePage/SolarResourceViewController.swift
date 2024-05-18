@@ -52,6 +52,8 @@ final class SolarResourceViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         setupUI()
+        viewModel.delegate = self
+        solarButtonTapped()
     }
     
     //MARK: - Initialization VM
@@ -86,7 +88,7 @@ final class SolarResourceViewController: UIViewController {
     private func addSolarLabel() {
         view.addSubview(addressLabel)
         NSLayoutConstraint.activate([
-            addressLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            addressLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             addressLabel.heightAnchor.constraint(equalToConstant: 50)
@@ -99,7 +101,7 @@ final class SolarResourceViewController: UIViewController {
     private func addSolarTextField() {
         view.addSubview(addressTextField)
         NSLayoutConstraint.activate([
-            addressTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            addressTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
             addressTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             addressTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             addressTextField.heightAnchor.constraint(equalToConstant: 50)
@@ -112,15 +114,18 @@ final class SolarResourceViewController: UIViewController {
     private func addSolarButton() {
         view.addSubview(solarButton)
         NSLayoutConstraint.activate([
-            solarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
+            solarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 320),
             solarButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             solarButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             solarButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         solarButton.setTitle("Let's go", for: .normal)
         solarButton.addAction(UIAction.init(handler: { [weak self] _ in
+            self?.solarButtonTapped()
             self?.viewModel.formatSolarData(with: self?.addressTextField.text) { [weak self] solarDataText in
-                self?.solarDataLabel.text = solarDataText
+                DispatchQueue.main.async {
+                    self?.solarDataLabel.text = solarDataText
+                }
             }
         }), for: .touchUpInside)
     }
@@ -128,12 +133,42 @@ final class SolarResourceViewController: UIViewController {
     private func addSolarDataLabel() {
         view.addSubview(solarDataLabel)
         NSLayoutConstraint.activate([
-            solarDataLabel.topAnchor.constraint(equalTo: solarButton.bottomAnchor, constant: 30),
+            solarDataLabel.topAnchor.constraint(equalTo: solarButton.bottomAnchor, constant: 50),
             solarDataLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             solarDataLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ])
         solarDataLabel.textColor = .white
         solarDataLabel.font = UIFont(name: "FiraGO-Medium", size: 16)
     }
+    
+    private func solarButtonTapped() {
+        guard let address = addressTextField.text, !address.isEmpty else {
+            presentAlert(title: "Error", message: "Please enter an address.")
+            return
+        }
+        viewModel.formatSolarData(with: address) { [weak self] solarDataText in
+            guard let self = self else { return }
+            
+            if let solarDataText = solarDataText, solarDataText != "Failed to fetch data" {
+                self.solarDataLabel.text = solarDataText
+            } else {
+                self.presentAlert(title: "Error", message: "Please check your address and try again.")
+            }
+        }
+    }
+   
 }
+      // MARK: - extension
+extension SolarResourceViewController: SolarResourceViewModelDelegate {
+    func showError(_ error: String) {
+        presentAlert(title: "Error", message: error)
+    }
+    func presentAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
 
