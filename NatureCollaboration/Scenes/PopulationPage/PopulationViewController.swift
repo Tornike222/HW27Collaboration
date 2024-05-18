@@ -167,7 +167,7 @@ final class PopulationViewController: UIViewController {
     
     private func addActionToSearchButton() {
         populationButton.addAction(UIAction.init(handler: { [weak self] _ in
-            self?.valueTodayLabel.text = self?.countryNametextField.text
+            
         }), for: .touchUpInside)
     }
     
@@ -207,5 +207,10 @@ final class PopulationViewController: UIViewController {
         ])
     }
 }
-
+extension PopulationViewController: PopulationViewModelDelegate {
+    func updatePopulation(today: Int, tomorrow: Int) {
+        self.valueTodayLabel.text = "\(today)"
+        self.valueTomorrowLabel.text = "\(tomorrow)"
+        }
+    }
 
