@@ -24,25 +24,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         PopulationViewController(viewModel: PopulationViewModel())
         ]
         
-        tabBarController.tabBar.items?[0].image = UIImage(systemName: "tornado")
-        tabBarController.tabBar.items?[0].title = "Air Quality"
-        tabBarController.tabBar.items?[1].image = UIImage(systemName: "thermometer.sun")
-        tabBarController.tabBar.items?[1].title = "Weather"
-        tabBarController.tabBar.items?[2].image = UIImage(systemName: "tree")
-        tabBarController.tabBar.items?[2].title = "Specie"
-        tabBarController.tabBar.items?[3].image = UIImage(systemName: "sun.max")
-        tabBarController.tabBar.items?[3].title = "Solar"
-        tabBarController.tabBar.items?[4].image = UIImage(systemName: "person.3")
-        tabBarController.tabBar.items?[4].title = "Population"
-        
+        setTitleAndImage(image: "tornado", title: "Air Quality", index: 0)
+        setTitleAndImage(image: "thermometer.sun", title: "Weather", index: 1)
+        setTitleAndImage(image: "tree", title: "Specie", index: 2)
+        setTitleAndImage(image: "sun.max", title: "Solar", index: 3)
+        setTitleAndImage(image: "person.3", title: "Population", index: 4)
         
         tabBarController.tabBar.unselectedItemTintColor = .white
-
         
         window = UIWindow(windowScene: scene)
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
+        
+        func setTitleAndImage(image: String, title: String, index: Int) {
+            tabBarController.tabBar.items?[index].image = UIImage(systemName: image)
+            tabBarController.tabBar.items?[index].title = title
+        }
     }
+    
+
     
 }
 
