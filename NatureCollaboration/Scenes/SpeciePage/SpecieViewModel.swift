@@ -11,6 +11,8 @@ import NetworkPackage
 //MARK: - SpecieViewModelDelegate protocol
 protocol SpecieViewModelDelegate: AnyObject{
     func reloadCollectionViewData()
+    func startAnimation()
+    func showErrorAlert()
 }
 
 final class SpecieViewModel {
@@ -18,12 +20,14 @@ final class SpecieViewModel {
     private var cityModel: CitiesModel?
     var specieModel: SpeciesModel?
     weak var delegate: SpecieViewModelDelegate?
-    weak var vc: SpecieViewController?
     
     //MARK: - Api Fetcher Function fetchCityData
     func fetchCityData(city: String?) {
-        guard let city = city, !city.isEmpty else { return }
-        self.customLoader.startAnimation()
+        guard let city = city,!city.isEmpty else {
+            delegate?.showErrorAlert()
+            return
+        }
+        delegate?.startAnimation()
         let baseUrl = "https://api.inaturalist.org"
         let cityUrlString = baseUrl + "/v1/places/autocomplete?q=\(city)&fbclid=IwAR3nm4STU-6VppZFtvIbosK0MNna1RVUWx-bZyiQsOUrRCpolMq_vX_oSL0#"
 

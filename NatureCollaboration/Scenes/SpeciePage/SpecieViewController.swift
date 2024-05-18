@@ -204,10 +204,19 @@ extension SpecieViewController: UICollectionViewDataSource {
 
 //MARK: - SpecieViewModelDelegate Extension
 extension SpecieViewController: SpecieViewModelDelegate {
+    func startAnimation() {
+        self.customLoader.startAnimation()
+    }
+    
     func reloadCollectionViewData() {
         DispatchQueue.main.async {
             self.specieCollectionView.reloadData()
             self.customLoader.stopAnimation()
         }
+    }
+    func showErrorAlert() {
+        let alertController = UIAlertController(title: "Error", message: "Enter correct city name to check specie ", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }
