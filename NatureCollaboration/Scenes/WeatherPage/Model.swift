@@ -14,15 +14,15 @@ struct WeatherData: Decodable, Identifiable {
 }
 
 struct Main: Decodable {
-    let temp: Double
+    let temp: Double?
 }
 
 struct Weather: Decodable {
-    let description: String
+    let description: String?
 }
 
 struct Coordinates: Decodable {
-    let lon: Double
-    let lat: Double
+    let lon: Double?
+    let lat: Double?
 }
 
