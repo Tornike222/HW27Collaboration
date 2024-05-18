@@ -73,6 +73,7 @@ final class SpecieViewController: UIViewController {
         return specieCollectionView
     }()
     
+    private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -80,6 +81,7 @@ final class SpecieViewController: UIViewController {
         view.backgroundColor = .cyan
         setupUI()
         viewModel.delegate = self
+        customLoader.addLoaderIndicator(view: view)
     }
     
     //MARK: - Initialization VM
@@ -91,7 +93,7 @@ final class SpecieViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //MARK: - SetupUIgi
+    //MARK: - SetupUI
     private func setupUI(){
         addBackgroundImage()
         addTitleLabel()
@@ -177,6 +179,7 @@ final class SpecieViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDataSource Extension
 extension SpecieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.specieModel?.results.count ?? 0
@@ -184,22 +187,27 @@ extension SpecieViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let specieCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpecieCollectionView", for: indexPath) as? SpecieCollectionViewCell
+        
         specieCell?.parentViewController = self
         let currentSpecie = viewModel.specieModel?.results[indexPath.row]
+        
         specieCell?.nameLabel.text = ("Name: " +  (currentSpecie?.taxon.name ?? ""))
-        specieCell?.preferredName.text = ("Preferred Name: " +  (currentSpecie?.taxon.preferred_common_name ?? ""))
-        specieCell?.photoAuthor.text = ("Author: " +  (viewModel.extractName(from: currentSpecie?.taxon.default_photo.attribution) ?? ""))
-        
-        let imageUrl = URL(string: currentSpecie?.taxon.default_photo.medium_url ?? "")!
+        specieCell?.preferredName.text = ("Preferred Name: " +  (currentSpecie?.taxon.preferredCommonName ?? ""))
+        specieCell?.photoAuthor.text = ("Author: " +  (viewModel.extractName(from: currentSpecie?.taxon.defaultPhoto.attribution) ?? ""))
+        let imageUrl = URL(string: currentSpecie?.taxon.defaultPhoto.mediumUrl ?? "")!
         specieCell?.specieImage.loadImageWith(url: imageUrl)
+        specieCell?.url = currentSpecie?.taxon.wikipediaUrl
         
-        specieCell?.url = currentSpecie?.taxon.wikipedia_url 
         return specieCell ?? UICollectionViewCell()
     }
 }
 
+//MARK: - SpecieViewModelDelegate Extension
 extension SpecieViewController: SpecieViewModelDelegate {
     func reloadCollectionViewData() {
-        specieCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.specieCollectionView.reloadData()
+            self.customLoader.stopAnimation()
+        }
     }
 }

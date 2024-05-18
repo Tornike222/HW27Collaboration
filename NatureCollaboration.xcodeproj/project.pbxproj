@@ -30,6 +30,7 @@
 		B2686E532BF7833100D663C5 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E522BF7833100D663C5 /* UIImageViewExtension.swift */; };
 		B2B915A02BF7B03800A0F845 /* SpecieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9159F2BF7B03800A0F845 /* SpecieModel.swift */; };
 		B2B915A22BF7D75800A0F845 /* SpecieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B915A12BF7D75800A0F845 /* SpecieCollectionViewCell.swift */; };
+		B2B915A82BF94CDB00A0F845 /* CustomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B915A72BF94CDB00A0F845 /* CustomLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		B2686E522BF7833100D663C5 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		B2B9159F2BF7B03800A0F845 /* SpecieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieModel.swift; sourceTree = "<group>"; };
 		B2B915A12BF7D75800A0F845 /* SpecieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieCollectionViewCell.swift; sourceTree = "<group>"; };
+		B2B915A72BF94CDB00A0F845 /* CustomLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				B2686E4E2BF7827700D663C5 /* CustomButton.swift */,
 				B2686E502BF782B800D663C5 /* CustomTextField.swift */,
+				B2B915A72BF94CDB00A0F845 /* CustomLoader.swift */,
 			);
 			path = CustomUIComponents;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				B2686E402BF6C96100D663C5 /* SolarResourceViewController.swift in Sources */,
 				B2686E322BF6C6AF00D663C5 /* AirQualityViewModel.swift in Sources */,
 				B2686E122BF6BDCA00D663C5 /* AppDelegate.swift in Sources */,
+				B2B915A82BF94CDB00A0F845 /* CustomLoader.swift in Sources */,
 				B2686E432BF6C98B00D663C5 /* SolarResourceViewModel.swift in Sources */,
 				B2686E3D2BF6C92900D663C5 /* SpecieViewModel.swift in Sources */,
 				B2686E142BF6BDCA00D663C5 /* SceneDelegate.swift in Sources */,

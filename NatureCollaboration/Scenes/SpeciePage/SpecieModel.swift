@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - CitiesModel
 struct CitiesModel: Decodable {
     let results: [Cities]
 }
@@ -15,6 +16,7 @@ struct Cities: Decodable {
     let id: Int?
 }
 
+//MARK: - SpeciesModel
 struct SpeciesModel: Decodable, Hashable {
     let results: [Species]
 }
@@ -25,13 +27,24 @@ struct Species: Decodable, Hashable {
 
 struct TaxonDetails: Decodable, Hashable {
     let name: String?
-    let default_photo: PhotoDetails
-    let wikipedia_url: String?
-    let preferred_common_name: String?
+    let defaultPhoto: PhotoDetails
+    let wikipediaUrl: String?
+    let preferredCommonName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case defaultPhoto = "default_photo"
+        case wikipediaUrl = "wikipedia_url"
+        case preferredCommonName = "preferred_common_name"
+    }
 }
 
 struct PhotoDetails: Decodable, Hashable {
-    let medium_url: String?
+    let mediumUrl: String?
     let attribution: String?
-}
 
+    enum CodingKeys: String, CodingKey {
+        case mediumUrl = "medium_url"
+        case attribution
+    }
+}
