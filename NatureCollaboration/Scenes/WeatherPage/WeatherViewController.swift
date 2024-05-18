@@ -6,18 +6,17 @@
 //
 
 import UIKit
-import Combine
 
-class WeatherViewController: UIViewController, UITableViewDataSource {
+class WeatherViewController: UIViewController, UITableViewDataSource, WeatherViewModelDelegate {
 
     // MARK: - Properties
-    private var viewModel = WeatherViewModel()
-    private var cancellables = Set<AnyCancellable>()
+    private var viewModel: WeatherViewModel
     
     // MARK: - Initializers
     init(viewModel: WeatherViewModel = WeatherViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +35,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource {
     
     private let latitudeTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "e.g 40"
+        textField.placeholder = "e.g 51.5074"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -52,7 +51,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource {
     
     private let longitudeTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "e.g 74"
+        textField.placeholder = "e.g -0.1278"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -71,18 +70,11 @@ class WeatherViewController: UIViewController, UITableViewDataSource {
         return tableView
     }()
     
-    private let errorMessageLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupBindings()
     }
     
     // MARK: - UI Setup
@@ -111,8 +103,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource {
         view.addSubview(longitudeTextField)
         view.addSubview(getWeatherButton)
         view.addSubview(tableView)
-        view.addSubview(errorMessageLabel)
-        
+    
         // Constraints for Latitude Label
         NSLayoutConstraint.activate([
             latitudeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
@@ -148,54 +139,30 @@ class WeatherViewController: UIViewController, UITableViewDataSource {
             getWeatherButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
         
-        // Constraints for Error Message Label
-        NSLayoutConstraint.activate([
-            errorMessageLabel.topAnchor.constraint(equalTo: getWeatherButton.bottomAnchor, constant: 30),
-            errorMessageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            errorMessageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-        
         // Constraints for TableView
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: errorMessageLabel.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: getWeatherButton.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        latitudeTextField.addTarget(self, action: #selector(latitudeTextFieldDidEndEditing), for: .editingDidEndOnExit)
-        getWeatherButton.addTarget(self, action: #selector(getWeatherButtonTapped), for: .touchUpInside)
+        getWeatherButton.addTarget(self, action: #selector(getWeatherButtonTapped), for: .touchUpInside) //selectors ar vikenebt
+        
+        tableView.dataSource = self
     }
     
-    // MARK: - Binding Setup
-    private func setupBindings() {
-        viewModel.$forecast
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.tableView.reloadData()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$errorMessage
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.text, on: errorMessageLabel)
-            .store(in: &cancellables)
-    }
     
     // MARK: - Action Methods
-    @objc private func latitudeTextFieldDidEndEditing() {
-        viewModel.latitude = latitudeTextField.text ?? ""
-    }
-    
-    @objc private func getWeatherButtonTapped() {
-        viewModel.latitude = latitudeTextField.text ?? ""
-        viewModel.longitude = longitudeTextField.text ?? ""
-        viewModel.fetchWeatherByCoordinates()
+    @objc private func getWeatherButtonTapped() {           //uiaction
+        let latitude = latitudeTextField.text ?? ""
+        let longitude = longitudeTextField.text ?? ""
+        viewModel.unwrapData(latitude: latitude, longitude: longitude)
     }
     
     // MARK: - UITableViewDataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.forecast.count
+        return viewModel.weatherInfo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -204,14 +171,29 @@ class WeatherViewController: UIViewController, UITableViewDataSource {
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
         
-        let weatherData = viewModel.forecast[indexPath.row]
-        cell.textLabel?.text = "Temperature: \(weatherData.main.temp)°C"
-        cell.detailTextLabel?.text = "Description: \(weatherData.weather.first?.description ?? "")"
+        let weatherData = viewModel.weatherInfo[indexPath.row]
+        cell.textLabel?.text = weatherData.title
+        cell.detailTextLabel?.text = weatherData.value
         return cell
+    }
+    
+    // MARK: - WeatherViewModelDelegate Methods
+    
+    func updateWeatherInfo() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Invalid input data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)    // tu arascoria daaclearos fildebi
     }
 }
 
-// MARK: - Preview
-#Preview {
-    WeatherViewController(viewModel: WeatherViewModel())
-}
+//// MARK: - Preview
+//#Preview {
+//    WeatherViewController(viewModel: WeatherViewModel())
+//}
+
