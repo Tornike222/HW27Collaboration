@@ -26,4 +26,23 @@ final class SolarResourceViewModel {
             }
         }
     }
+    
+    func formatSolarData(with address: String?, completion: @escaping (String?) -> Void) {
+        fetchSolarData(with: address) { solarData in
+            guard let solarData = solarData else {
+                completion("Failed to fetch data")
+                return
+            }
+            let averageDNI = solarData.outputs.avgDni.annual
+            let averageGHI = solarData.outputs.avgGhi.annual
+            let averageLatTilt = solarData.outputs.avgLatTilt.annual
+            let solarDataText = """
+                Average Direct Normal Irradiance: \(averageDNI)
+                Average Global Horizontal Irradiance: \(averageGHI)
+                Average Tilt at Latitude: \(averageLatTilt)
+                """
+            completion(solarDataText)
+        }
+    }
 }
+
