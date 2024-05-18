@@ -146,7 +146,3 @@ class SolarResourceViewController: UIViewController {
     }
 }
 
-
-#Preview {
-    SolarResourceViewController(viewModel: SolarResourceViewModel())
-}
