@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08BE438A2BF7ABA10081439C /* AirQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE43892BF7ABA10081439C /* AirQualityModel.swift */; };
+		08BE438C2BF80C3E0081439C /* PopulationPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE438B2BF80C3E0081439C /* PopulationPageModel.swift */; };
 		B2686E122BF6BDCA00D663C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */; };
 		B2686E142BF6BDCA00D663C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */; };
 		B2686E162BF6BDCA00D663C5 /* AirQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */; };
@@ -25,9 +27,14 @@
 		B2686E482BF6C9D200D663C5 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E472BF6C9D200D663C5 /* PopulationViewModel.swift */; };
 		B2686E4B2BF6D06B00D663C5 /* FiraGO-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2686E492BF6D06900D663C5 /* FiraGO-Bold.ttf */; };
 		B2686E4C2BF6D06B00D663C5 /* FiraGO-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2686E4A2BF6D06B00D663C5 /* FiraGO-Medium.ttf */; };
+		B2686E4F2BF7827700D663C5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E4E2BF7827700D663C5 /* CustomButton.swift */; };
+		B2686E512BF782B800D663C5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E502BF782B800D663C5 /* CustomTextField.swift */; };
+		B2686E532BF7833100D663C5 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2686E522BF7833100D663C5 /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08BE43892BF7ABA10081439C /* AirQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityModel.swift; sourceTree = "<group>"; };
+		08BE438B2BF80C3E0081439C /* PopulationPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageModel.swift; sourceTree = "<group>"; };
 		B2686E0E2BF6BDCA00D663C5 /* NatureCollaboration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NatureCollaboration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2686E112BF6BDCA00D663C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2686E132BF6BDCA00D663C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +53,9 @@
 		B2686E472BF6C9D200D663C5 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
 		B2686E492BF6D06900D663C5 /* FiraGO-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraGO-Bold.ttf"; sourceTree = "<group>"; };
 		B2686E4A2BF6D06B00D663C5 /* FiraGO-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraGO-Medium.ttf"; sourceTree = "<group>"; };
+		B2686E4E2BF7827700D663C5 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		B2686E502BF782B800D663C5 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B2686E522BF7833100D663C5 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				B2686E2B2BF6BFBA00D663C5 /* App */,
+				B2686E552BF7835200D663C5 /* UIComponents */,
 				B2686E2F2BF6C15200D663C5 /* Scenes */,
 				B2686E2C2BF6BFE400D663C5 /* SupportingFiles */,
 			);
@@ -140,6 +151,7 @@
 			children = (
 				B2686E152BF6BDCA00D663C5 /* AirQualityViewController.swift */,
 				B2686E312BF6C6AF00D663C5 /* AirQualityViewModel.swift */,
+				08BE43892BF7ABA10081439C /* AirQualityModel.swift */,
 			);
 			path = AirQualityPage;
 			sourceTree = "<group>";
@@ -176,6 +188,7 @@
 			children = (
 				B2686E442BF6C9B900D663C5 /* PopulationViewController.swift */,
 				B2686E472BF6C9D200D663C5 /* PopulationViewModel.swift */,
+				08BE438B2BF80C3E0081439C /* PopulationPageModel.swift */,
 			);
 			path = PopulationPage;
 			sourceTree = "<group>";
@@ -187,6 +200,24 @@
 				B2686E4A2BF6D06B00D663C5 /* FiraGO-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B2686E542BF7834800D663C5 /* CustomUIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E4E2BF7827700D663C5 /* CustomButton.swift */,
+				B2686E502BF782B800D663C5 /* CustomTextField.swift */,
+			);
+			path = CustomUIComponents;
+			sourceTree = "<group>";
+		};
+		B2686E552BF7835200D663C5 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B2686E542BF7834800D663C5 /* CustomUIComponents */,
+				B2686E522BF7833100D663C5 /* UIImageViewExtension.swift */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,15 +300,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2686E512BF782B800D663C5 /* CustomTextField.swift in Sources */,
+				B2686E4F2BF7827700D663C5 /* CustomButton.swift in Sources */,
 				B2686E3A2BF6C8AA00D663C5 /* SpecieViewController.swift in Sources */,
 				B2686E162BF6BDCA00D663C5 /* AirQualityViewController.swift in Sources */,
 				B2686E452BF6C9BA00D663C5 /* PopulationViewController.swift in Sources */,
+				B2686E532BF7833100D663C5 /* UIImageViewExtension.swift in Sources */,
+				08BE438A2BF7ABA10081439C /* AirQualityModel.swift in Sources */,
 				B2686E382BF6C82100D663C5 /* WeatherViewModel.swift in Sources */,
 				B2686E402BF6C96100D663C5 /* SolarResourceViewController.swift in Sources */,
 				B2686E322BF6C6AF00D663C5 /* AirQualityViewModel.swift in Sources */,
 				B2686E122BF6BDCA00D663C5 /* AppDelegate.swift in Sources */,
 				B2686E432BF6C98B00D663C5 /* SolarResourceViewModel.swift in Sources */,
 				B2686E3D2BF6C92900D663C5 /* SpecieViewModel.swift in Sources */,
+				08BE438C2BF80C3E0081439C /* PopulationPageModel.swift in Sources */,
 				B2686E142BF6BDCA00D663C5 /* SceneDelegate.swift in Sources */,
 				B2686E352BF6C7E000D663C5 /* WeatherViewController.swift in Sources */,
 				B2686E482BF6C9D200D663C5 /* PopulationViewModel.swift in Sources */,
