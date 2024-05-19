@@ -69,7 +69,7 @@ final class WeatherViewModel {
             return WeatherDataFormatted(
                 date: dateString,
                 description: weatherData.weather.first?.description ?? "N/A",
-                temperature: "\(weatherData.main.temp)°C"
+                temperature: "\(weatherData.main.temp!)°C"
             )
         }
     }
