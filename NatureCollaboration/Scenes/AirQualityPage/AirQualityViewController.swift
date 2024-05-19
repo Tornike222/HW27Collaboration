@@ -68,27 +68,21 @@ final class AirQualityViewController: UIViewController {
     private let viewForStack : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
         view.backgroundColor = #colorLiteral(red: 0.1702060997, green: 0.2210938334, blue: 0.3300693631, alpha: 1)
         view.isHidden = true
         return view
     }()
     
+    private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 500, width: 100, height: 100))
+    
     private var countryTextField: CustomTextField!
     private var stateTextField: CustomTextField!
     private var cityTextField: CustomTextField!
     
     //MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .cyan
-        viewModel.delegate = self
-        setupUI()
-        addActionToButton()
-    }
     
-    //MARK: - Initialization VM
     init(viewModel: AirQualityViewModel){
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -96,6 +90,15 @@ final class AirQualityViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .cyan
+        viewModel.delegate = self
+        setupUI()
+        addActionToButton()
+        customLoader.addLoaderIndicator(view: view)
     }
     
     // MARK: - UI Setup
@@ -277,6 +280,14 @@ extension AirQualityViewController: AirQualityViewModelDelegate {
     func textFieldsHighlighted() {
             highlightErrorFields()
         }
+    
+    func startAnimation() {
+        self.customLoader.startAnimation()
+    }
+    
+    func stopAnimation() {
+        self.customLoader.stopAnimation()
+    }
  }
 
 #Preview {
