@@ -1,0 +1,24 @@
+{
+  "originHash" : "7acbb99347917b4e0a4c0cfa3c958ae695be69717e3ec667d83aaef8a49631ef",
+  "pins" : [
+    {
+      "identity" : "hex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/toddheasley/hex",
+      "state" : {
+        "revision" : "eb202bd45ad4986bd29a0e6ff6bdb4f28325b6e9",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "networkpackage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tornike222/NetworkPackage",
+      "state" : {
+        "branch" : "main",
+        "revision" : "00ba0b664a5a800ca21c941bb6856e6ee459eb37"
+      }
+    }
+  ],
+  "version" : 3
+}
