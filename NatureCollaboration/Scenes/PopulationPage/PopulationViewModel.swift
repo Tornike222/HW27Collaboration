@@ -9,30 +9,25 @@ import Foundation
 import NetworkPackage
 
 protocol PopulationViewModelDelegate: AnyObject {
-    func updatePopulation(today: Int, tomorrow: Int)
+    func updatePopulation(with totalPopulation: [TotalPopulation])
 }
 
 class PopulationViewModel {
     var networkService = NetworkService()
-    var populationData: PopulationPageModel?
+    var populationData: PopulationModel?
     weak var delegate: PopulationViewModelDelegate?
     
     init(networkService: NetworkService = NetworkService()) {
         self.networkService = networkService
     }
     
-//    func checkAndFetchPopulation(country: String) {
-//        guard let country = countryNametextField.text, !country.isEmpty else {
-//            print("Error: please, enter country name")
-//            return
-//        }
-//        fetchPopulationData(country: country)
-//        
-//    }
-    
-    func fetchPopulationData(country: String) {
-        let urlString = "https://d6wn6bmjj722w.population.io:443/1.0/population/\(country)/today-and-tomorrow/?format=json"
-        networkService.getData(urlString: urlString) { (result: PopulationPageModel?, error: Error?) in
+    func fetchPopulationData(country: String?) {
+        guard let country = country, !country.isEmpty else { return }
+        
+        let baseUrl = "https://d6wn6bmjj722w.population.io:443"
+        
+        let urlString = baseUrl + "/1.0/population/\(country)/today-and-tomorrow/?format=json"
+        networkService.getData(urlString: urlString) { [self] (result: PopulationModel?, error: Error?) in
             if error != nil {
                 return
             }
@@ -40,7 +35,8 @@ class PopulationViewModel {
                 return
             }
             
-            
+            self.populationData = result
+            delegate?.updatePopulation(with: self.populationData!.totalPopulation)
         }
     }
     

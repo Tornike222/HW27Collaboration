@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PopulationPageModel: Decodable {
+struct PopulationModel: Decodable {
     let totalPopulation: [TotalPopulation]
     
     enum CodingKeys: String, CodingKey {
@@ -16,6 +16,6 @@ struct PopulationPageModel: Decodable {
 }
 
 struct TotalPopulation: Decodable {
-    let date: String
-    let population: Int
+    let date: String?
+    let population: Int?
 }
