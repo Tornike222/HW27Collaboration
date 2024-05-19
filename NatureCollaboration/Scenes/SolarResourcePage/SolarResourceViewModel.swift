@@ -32,9 +32,6 @@ final class SolarResourceViewModel {
             } else {
                 completion(result)
             }
-            if result != nil {
-                print("result")
-            }
         }
     }
     

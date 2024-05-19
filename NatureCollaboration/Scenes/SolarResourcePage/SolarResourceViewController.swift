@@ -12,6 +12,7 @@ final class SolarResourceViewController: UIViewController {
     //MARK: - Properties
     var viewModel: SolarResourceViewModel!
     
+    //MARK: - UIComponents
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "BackgroundImage")
@@ -75,15 +76,7 @@ final class SolarResourceViewController: UIViewController {
         return view
     }()
     
-    var solarData: SolarData?
-    
-    //MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .cyan
-        setupUI()
-        viewModel.delegate = self
-    }
+    private var solarData: SolarData?
     
     //MARK: - Initialization VM
     init(viewModel: SolarResourceViewModel){
@@ -93,6 +86,14 @@ final class SolarResourceViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .cyan
+        setupUI()
+        viewModel.delegate = self
     }
     
     //MARK: - setupUI
@@ -208,18 +209,19 @@ final class SolarResourceViewController: UIViewController {
             return
         }
     }
+    
+    private func presentAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - extension
 extension SolarResourceViewController: SolarResourceViewModelDelegate {
     func showError(_ error: String) {
         presentAlert(title: "Error", message: error)
-    }
-    func presentAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
     }
 }
 
