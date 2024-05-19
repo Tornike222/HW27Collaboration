@@ -78,6 +78,8 @@ final class SolarResourceViewController: UIViewController {
     
     private var solarData: SolarData?
     
+    private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    
     //MARK: - Initialization VM
     init(viewModel: SolarResourceViewModel){
         self.viewModel = viewModel
@@ -94,6 +96,7 @@ final class SolarResourceViewController: UIViewController {
         view.backgroundColor = .cyan
         setupUI()
         viewModel.delegate = self
+        customLoader.addLoaderIndicator(view: view)
     }
     
     //MARK: - setupUI
@@ -155,11 +158,13 @@ final class SolarResourceViewController: UIViewController {
         solarButton.setTitle("Search", for: .normal)
         solarButton.addAction(UIAction.init(handler: { [weak self] _ in
             self?.solarButtonTapped()
+            
             self?.viewModel.formatSolarData(with: self?.addressTextField.text) { [weak self] solarDataText in
                 DispatchQueue.main.async {
                     self?.solarDataLabel.text = solarDataText
                 }
                 self?.outputBackgroundView.isHidden = false
+                self?.stopAnimation()
             }
         }), for: .touchUpInside)
     }
@@ -208,6 +213,7 @@ final class SolarResourceViewController: UIViewController {
             presentAlert(title: "Error", message: "Please enter an address.")
             return
         }
+        customLoader.startAnimation()
     }
     
     private func presentAlert(title: String, message: String) {
@@ -223,6 +229,13 @@ extension SolarResourceViewController: SolarResourceViewModelDelegate {
     func showError(_ error: String) {
         presentAlert(title: "Error", message: error)
     }
-}
+        func startAnimation() {
+            self.customLoader.startAnimation()
+        }
+        func stopAnimation() {
+            self.customLoader.stopAnimation()
+        }
+    }
+
 
 

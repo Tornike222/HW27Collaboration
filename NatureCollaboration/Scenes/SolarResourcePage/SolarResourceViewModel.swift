@@ -11,6 +11,8 @@ import NetworkPackage
 
 protocol SolarResourceViewModelDelegate: AnyObject {
     func showError(_ error: String)
+    func startAnimation()
+    func stopAnimation()
 }
 
 final class SolarResourceViewModel {
