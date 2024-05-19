@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct PopulationModel: Decodable {
+//MARK: - Population Model 
+struct PopulationPageModel: Decodable {
     let totalPopulation: [TotalPopulation]
     
     enum CodingKeys: String, CodingKey {

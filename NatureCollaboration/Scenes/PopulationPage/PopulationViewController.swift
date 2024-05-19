@@ -11,6 +11,7 @@ final class PopulationViewController: UIViewController {
     //MARK: - Properties
     var viewModel: PopulationViewModel!
     
+    //MARK: - UI Components
     private let backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.image = UIImage(named: "BackgroundImage")
@@ -129,7 +130,7 @@ final class PopulationViewController: UIViewController {
         setupUI()
         viewModel.delegate = self
     }
-    
+    //MARK: - Setup UI Components
     private func setupUI() {
         addBackgroundImage()
         setUpTitleLabel()
@@ -260,13 +261,14 @@ final class PopulationViewController: UIViewController {
     }
 
 }
+//MARK: - PopulationViewModelDelegate extension
 extension PopulationViewController: PopulationViewModelDelegate {
     func updatePopulation(with totalPopulation: [TotalPopulation]) {
         self.todayLabel.text = totalPopulation[0].date
-        self.valueTodayLabel.text = String(totalPopulation[0].population ?? 0)
+        self.valueTodayLabel.text = String(totalPopulation[0].population)
     
         self.tomorrowLabel.text = totalPopulation[1].date
-        self.valueTomorrowLabel.text = String(totalPopulation[1].population ?? 0)
+        self.valueTomorrowLabel.text = String(totalPopulation[1].population)
         viewForValuesBackground.isHidden = false
         }
     }
