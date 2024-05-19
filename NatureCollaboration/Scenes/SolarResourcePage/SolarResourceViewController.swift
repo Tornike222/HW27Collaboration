@@ -4,7 +4,7 @@
 //
 //  Created by telkanishvili on 17.05.24.
 //
-
+//
 import UIKit
 
 final class SolarResourceViewController: UIViewController {
@@ -66,6 +66,15 @@ final class SolarResourceViewController: UIViewController {
         return label
     }()
     
+    private let outputBackgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(red: 0.1682283282, green: 0.2181586623, blue: 0.3290845454, alpha: 1)
+        view.layer.cornerRadius = 15
+        view.isHidden = true
+        return view
+    }()
+    
     var solarData: SolarData?
     
     //MARK: - Lifecycle
@@ -74,7 +83,6 @@ final class SolarResourceViewController: UIViewController {
         view.backgroundColor = .cyan
         setupUI()
         viewModel.delegate = self
-        solarButtonTapped()
     }
     
     //MARK: - Initialization VM
@@ -96,6 +104,7 @@ final class SolarResourceViewController: UIViewController {
         addSolarDataLabel()
         addTitleLabel()
         addDescriptionLabel()
+        addOutputBackgroundView()
     }
     
     private func addSolarBackground() {
@@ -118,7 +127,7 @@ final class SolarResourceViewController: UIViewController {
         ])
         addressLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
         addressLabel.textColor = .white
-        addressLabel.text = "Enter your address:"
+        addressLabel.text = "Enter address:"
     }
     
     private func addSolarTextField() {
@@ -142,7 +151,7 @@ final class SolarResourceViewController: UIViewController {
             solarButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             solarButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        solarButton.setTitle("Let's go", for: .normal)
+        solarButton.setTitle("Search", for: .normal)
         solarButton.addAction(UIAction.init(handler: { [weak self] _ in
             self?.solarButtonTapped()
             self?.viewModel.formatSolarData(with: self?.addressTextField.text) { [weak self] solarDataText in
@@ -182,24 +191,25 @@ final class SolarResourceViewController: UIViewController {
         ])
     }
     
+    private func addOutputBackgroundView() {
+        view.addSubview(outputBackgroundView)
+        NSLayoutConstraint.activate([
+            outputBackgroundView.topAnchor.constraint(equalTo: solarButton.bottomAnchor, constant: 40),
+            outputBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            outputBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            outputBackgroundView.heightAnchor.constraint(equalToConstant: 130)
+        ])
+    }
+    
     private func solarButtonTapped() {
         guard let address = addressTextField.text, !address.isEmpty else {
             presentAlert(title: "Error", message: "Please enter an address.")
             return
         }
-        viewModel.formatSolarData(with: address) { [weak self] solarDataText in
-            guard let self = self else { return }
-            
-            if let solarDataText = solarDataText, solarDataText != "Failed to fetch data" {
-                self.solarDataLabel.text = solarDataText
-            } else {
-                self.presentAlert(title: "Error", message: "Please check your address and try again.")
-            }
-        }
     }
-   
 }
-      // MARK: - extension
+
+// MARK: - extension
 extension SolarResourceViewController: SolarResourceViewModelDelegate {
     func showError(_ error: String) {
         presentAlert(title: "Error", message: error)

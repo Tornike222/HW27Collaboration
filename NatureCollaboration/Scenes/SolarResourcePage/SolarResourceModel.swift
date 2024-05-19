@@ -8,20 +8,7 @@
 import Foundation
 
 struct SolarData: Decodable {
-    let version: String?
-    let warnings: [String]?
-    let errors: [String]?
-    let metadata: Metadata?
-    let inputs: Inputs?
     let outputs: Outputs?
-    
-    struct Metadata: Decodable {
-        let sources: [String]?
-    }
-    
-    struct Inputs: Decodable {
-        let address: String?
-    }
     
     struct Outputs: Decodable {
         let avgDni: SolarValues?
@@ -37,6 +24,5 @@ struct SolarData: Decodable {
     
     struct SolarValues: Decodable {
         let annual: Double?
-        let monthly: [String: Double]?
     }
 }

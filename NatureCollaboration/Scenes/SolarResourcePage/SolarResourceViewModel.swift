@@ -14,16 +14,15 @@ protocol SolarResourceViewModelDelegate: AnyObject {
 }
 
 final class SolarResourceViewModel {
-
+    
     weak var delegate: SolarResourceViewModelDelegate?
     
-    func fetchSolarData(with address: String?, completion: @escaping (SolarData?) -> Void) {
-            guard let address = address, !address.isEmpty else {
-                delegate?.showError("Please enter a valid address.")
-                completion(nil)
-                return
-            }
-        
+    private func fetchSolarData(with address: String?, completion: @escaping (SolarData?) -> Void) {
+        guard let address = address, !address.isEmpty else {
+            delegate?.showError("Please enter a valid address.")
+            completion(nil)
+            return
+        }
         
         let urlString = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=gLzFj4SUXuHTIOnRXEoclwCczMigabc4GZfHcnyy&address=\(address)"
         NetworkService().getData(urlString: urlString) { (result: SolarData?, error) in
@@ -33,9 +32,8 @@ final class SolarResourceViewModel {
             } else {
                 completion(result)
             }
-            if let result = result {
+            if result != nil {
                 print("result")
-                
             }
         }
     }
@@ -43,20 +41,23 @@ final class SolarResourceViewModel {
     func formatSolarData(with address: String?, completion: @escaping (String?) -> Void) {
         fetchSolarData(with: address) { solarData in
             guard let solarData = solarData else {
-                completion("Failed to fetch data")
+                completion("Please enter valid address")
                 return
             }
+            
             let averageDNI = solarData.outputs?.avgDni?.annual ?? 0.0
             let averageGHI = solarData.outputs?.avgGhi?.annual ?? 0.0
             let averageLatTilt = solarData.outputs?.avgLatTilt?.annual ?? 0.0
             let solarDataText = """
-                Average Direct Normal Irradiance: \(averageDNI)
-                Average Global Horizontal Irradiance: \(averageGHI)
-                Average Tilt at Latitude: \(averageLatTilt)
-                """
+                        Annual Average Information:
+                        Average Direct Normal Irradiance: \(averageDNI)
+                        Average Global Horizontal Irradiance: \(averageGHI)
+                        Average Tilt at Latitude: \(averageLatTilt)
+                        """
             completion(solarDataText)
         }
     }
 }
+
 
 
