@@ -11,11 +11,11 @@ struct AirQualityModel: Decodable {
     struct Data: Decodable {
         struct Current: Decodable {
             struct Pollution: Decodable {
-                let ts: String
-                let aqius: Int
-                let mainus: String
-                let aqicn: Int
-                let maincn: String
+                let ts: String?
+                let aqius: Int?
+                let mainus: String?
+                let aqicn: Int?
+                let maincn: String?
             }
             let pollution: Pollution
         }
