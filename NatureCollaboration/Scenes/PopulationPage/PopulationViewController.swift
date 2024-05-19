@@ -111,14 +111,6 @@ final class PopulationViewController: UIViewController {
         viewForValuesBackground.isHidden = true
         return viewForValuesBackground
     }()
-        
-    //MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .cyan
-        setupUI()
-        viewModel.delegate = self
-    }
     
     //MARK: - Initialization VM
     init(viewModel: PopulationViewModel){
@@ -128,6 +120,14 @@ final class PopulationViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .cyan
+        setupUI()
+        viewModel.delegate = self
     }
     
     private func setupUI() {
