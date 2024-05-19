@@ -11,6 +11,7 @@ final class PopulationViewController: UIViewController {
     //MARK: - Properties
     var viewModel: PopulationViewModel!
     
+    //MARK: - UI Components
     private let backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.image = UIImage(named: "BackgroundImage")
@@ -39,9 +40,18 @@ final class PopulationViewController: UIViewController {
         return label
     }()
     
-    private let countryNametextField: CustomTextField = {
+    private let countryNameLabel: UILabel = {
+        let countryNameLabel = UILabel()
+        countryNameLabel.text = "Country:"
+        countryNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        countryNameLabel.font = UIFont(name: "FiraGO-Medium", size: 18)
+        countryNameLabel.textColor = .white
+        return countryNameLabel
+    }()
+    
+    private let countryNameTextField: CustomTextField = {
         let textFiled = CustomTextField()
-        textFiled.placeholder = "Country"
+        textFiled.placeholder = "e.g. Georgia"
         return textFiled
     }()
     
@@ -51,9 +61,18 @@ final class PopulationViewController: UIViewController {
         return button
     }()
     
+    private let countryLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.backgroundColor = .clear
+        label.font = UIFont(name: "FiraGO-Medium", size: 25)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
+        return label
+    }()
+    
     private let todayLabel: UILabel = {
         let label = UILabel()
-        label.text = "Today"
         label.textColor = .white
         label.backgroundColor = .clear
         label.font = UIFont(name: "FiraGO-Medium", size: 18)
@@ -63,8 +82,8 @@ final class PopulationViewController: UIViewController {
     
     private let valueTodayLabel: UILabel = {
         let label = UILabel()
-        label.text = "-----"
         label.textColor = .white
+        label.textAlignment = .right
         label.font = UIFont(name: "FiraGO-Medium", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -72,7 +91,6 @@ final class PopulationViewController: UIViewController {
     
     private let tomorrowLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tomorrow"
         label.textColor = .white
         label.font = UIFont(name: "FiraGO-Medium", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -81,20 +99,23 @@ final class PopulationViewController: UIViewController {
     
     private let valueTomorrowLabel: UILabel = {
         let label = UILabel()
-        label.text = "------"
         label.textColor = .white
         label.font = UIFont(name: "FiraGO-Medium", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    //MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .cyan
-        setupUI()
-    }
+    private let viewForValuesBackground: UIView = {
+        let viewForValuesBackground = UIView()
+        viewForValuesBackground.translatesAutoresizingMaskIntoConstraints = false
+        viewForValuesBackground.backgroundColor = UIColor(red: 0.1702060997, green: 0.2210938334, blue: 0.3300693631, alpha: 1)
+        viewForValuesBackground.layer.cornerRadius = 15
+        viewForValuesBackground.isHidden = true
+        return viewForValuesBackground
+    }()
     
+    private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+
     //MARK: - Initialization VM
     init(viewModel: PopulationViewModel){
         self.viewModel = viewModel
@@ -105,12 +126,26 @@ final class PopulationViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .cyan
+        setupUI()
+        viewModel.delegate = self
+        customLoader.addLoaderIndicator(view: view)
+
+    }
+    
+    //MARK: - Setup UI Components
     private func setupUI() {
         addBackgroundImage()
         setUpTitleLabel()
         setUpDescriptionLabel()
+        addCountryNameLabel()
         addTextField()
         addButton()
+        addViewForValuesBackground()
+        addCountryLabel()
         addTodayLabel()
         addValueTodayLabel()
         addTomorrowLabel()
@@ -145,13 +180,21 @@ final class PopulationViewController: UIViewController {
         ])
     }
     
-    private func addTextField() {
-        view.addSubview(countryNametextField)
+    private func addCountryNameLabel() {
+        view.addSubview(countryNameLabel)
         NSLayoutConstraint.activate([
-            countryNametextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            countryNametextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 100),
-            countryNametextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
+            countryNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            countryNameLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 80),
+            countryNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+        ])
+    }
+    
+    private func addTextField() {
+        view.addSubview(countryNameTextField)
+        NSLayoutConstraint.activate([
+            countryNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            countryNameTextField.topAnchor.constraint(equalTo: countryNameLabel.bottomAnchor, constant: 5),
+            countryNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
         ])
     }
     
@@ -159,7 +202,7 @@ final class PopulationViewController: UIViewController {
         view.addSubview(populationButton)
         NSLayoutConstraint.activate([
             populationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            populationButton.topAnchor.constraint(equalTo: countryNametextField.bottomAnchor, constant: 40),
+            populationButton.topAnchor.constraint(equalTo: countryNameTextField.bottomAnchor, constant: 40),
             populationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
         addActionToSearchButton()
@@ -167,45 +210,80 @@ final class PopulationViewController: UIViewController {
     
     private func addActionToSearchButton() {
         populationButton.addAction(UIAction.init(handler: { [weak self] _ in
-            self?.valueTodayLabel.text = self?.countryNametextField.text
+            self?.viewModel.fetchPopulationData(country: self?.countryNameTextField.text)
+            self?.countryLabel.text = self?.countryNameTextField.text
         }), for: .touchUpInside)
+    }
+    
+    private func addViewForValuesBackground() {
+        view.addSubview(viewForValuesBackground)
+        NSLayoutConstraint.activate([
+            viewForValuesBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            viewForValuesBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            viewForValuesBackground.topAnchor.constraint(equalTo: populationButton.bottomAnchor, constant: 50),
+            viewForValuesBackground.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+        ])
+    }
+    
+    private func addCountryLabel() {
+        view.addSubview(countryLabel)
+        NSLayoutConstraint.activate([
+            countryLabel.centerXAnchor.constraint(equalTo: viewForValuesBackground.centerXAnchor),
+            countryLabel.topAnchor.constraint(equalTo: viewForValuesBackground.topAnchor, constant: 40)
+        ])
     }
     
     private func addTodayLabel() {
         view.addSubview(todayLabel)
         NSLayoutConstraint.activate([
-            todayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            todayLabel.topAnchor.constraint(equalTo: populationButton.bottomAnchor, constant: 40),
-            todayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            todayLabel.leadingAnchor.constraint(equalTo: viewForValuesBackground.leadingAnchor, constant: 20),
+            todayLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor, constant: 50)
         ])
     }
     
     private func addValueTodayLabel() {
         view.addSubview(valueTodayLabel)
         NSLayoutConstraint.activate([
-            valueTodayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            valueTodayLabel.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 40),
-            valueTodayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            valueTodayLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor, constant: 50),
+            valueTodayLabel.trailingAnchor.constraint(equalTo: viewForValuesBackground.trailingAnchor, constant: -20)
         ])
     }
     
     private func addTomorrowLabel() {
         view.addSubview(tomorrowLabel)
         NSLayoutConstraint.activate([
-            tomorrowLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            tomorrowLabel.topAnchor.constraint(equalTo: valueTodayLabel.bottomAnchor, constant: 40),
-            tomorrowLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tomorrowLabel.leadingAnchor.constraint(equalTo: viewForValuesBackground.leadingAnchor, constant: 20),
+            tomorrowLabel.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 40)
         ])
     }
     
     private func addValueTomorrowLabel() {
         view.addSubview(valueTomorrowLabel)
         NSLayoutConstraint.activate([
-            valueTomorrowLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            valueTomorrowLabel.topAnchor.constraint(equalTo: tomorrowLabel.bottomAnchor, constant: 40),
-            valueTomorrowLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            valueTomorrowLabel.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 40),
+            valueTomorrowLabel.trailingAnchor.constraint(equalTo: viewForValuesBackground.trailingAnchor, constant: -20),
         ])
     }
 }
 
+//MARK: - PopulationViewModelDelegate extension
+extension PopulationViewController: PopulationViewModelDelegate {
+    func stopLoading() {
+        self.customLoader.stopAnimation()
+    }
+    
+    func startLoading() {
+        self.customLoader.startAnimation()
+    }
+    
+    func updatePopulation(with totalPopulation: [TotalPopulation]) {
+        self.todayLabel.text = totalPopulation[0].date
+        self.valueTodayLabel.text = String(totalPopulation[0].population ?? 0)
+    
+        self.tomorrowLabel.text = totalPopulation[1].date
+        self.valueTomorrowLabel.text = String(totalPopulation[1].population ?? 0)
+        viewForValuesBackground.isHidden = false
+        countryLabel.isHidden = false
+        }
+    }
 

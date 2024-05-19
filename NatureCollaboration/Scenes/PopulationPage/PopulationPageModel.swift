@@ -2,11 +2,12 @@
 //  PopulationPageModel.swift
 //  NatureCollaboration
 //
-//  Created by Sandro Gelashvili on 18.05.24.
+//  Created by telkanishvili on 19.05.24.
 //
 
 import Foundation
 
+//MARK: - Population Model 
 struct PopulationPageModel: Decodable {
     let totalPopulation: [TotalPopulation]
     
@@ -14,8 +15,8 @@ struct PopulationPageModel: Decodable {
         case totalPopulation = "total_population"
     }
 }
-
+ 
 struct TotalPopulation: Decodable {
-    let date: String
-    let population: Int
+    let date: String?
+    let population: Int?
 }
