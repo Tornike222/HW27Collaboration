@@ -116,7 +116,6 @@ final class PopulationViewController: UIViewController {
     
     private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 
-    
     //MARK: - Initialization VM
     init(viewModel: PopulationViewModel){
         self.viewModel = viewModel
@@ -136,6 +135,7 @@ final class PopulationViewController: UIViewController {
         customLoader.addLoaderIndicator(view: view)
 
     }
+    
     //MARK: - Setup UI Components
     private func setupUI() {
         addBackgroundImage()
