@@ -13,6 +13,9 @@ protocol AirQualityViewModelDelegate: AnyObject {
     func showAllert(message: String)
     func showViewForStack()
     func textFieldsHighlighted()
+    func startAnimation()
+    func stopAnimation()
+    
 }
 
 final class AirQualityViewModel {
@@ -21,7 +24,7 @@ final class AirQualityViewModel {
     var airQualityData: AirQualityModel?
     weak var delegate: AirQualityViewModelDelegate?
     
-    private(set) var airQualityInfo: [(title: String, value: String)] = [] {
+    var airQualityInfo: [(title: String, value: String)] = [] {
         didSet {
             delegate?.updateAirQualityInfo()
             delegate?.showViewForStack()
@@ -40,20 +43,20 @@ final class AirQualityViewModel {
               let city = city, !city.isEmpty else {
             delegate?.showAllert(message: "Please fill in all fields")
             delegate?.textFieldsHighlighted()
+
             return
         }
+        delegate?.startAnimation()
         fetchAirQualityData(city: city, state: state, country: country)
     }
     
     private func fetchAirQualityData(city: String, state: String, country: String) {
         let urlString = "https://api.airvisual.com/v2/city?city=\(city)&state=\(state)&country=\(country)&key=daa8e5fe-96fa-4e8a-aa71-3ed1ec511490"
         networkService.getData(urlString: urlString) { (result: AirQualityModel?, error: Error?) in
-            if error != nil {
-                return
-            }
             guard let result = result else {
                 return
             }
+            self.delegate?.stopAnimation()
             let pollution = result.data.current.pollution
             let date = self.convertTimestampToDate(pollution.ts ?? "")
             let dateString = date != nil ? self.formatDateToHoursAndMinutes(date: date!) : "Invalid date"
