@@ -265,10 +265,10 @@ final class PopulationViewController: UIViewController {
 extension PopulationViewController: PopulationViewModelDelegate {
     func updatePopulation(with totalPopulation: [TotalPopulation]) {
         self.todayLabel.text = totalPopulation[0].date
-        self.valueTodayLabel.text = String(totalPopulation[0].population)
+        self.valueTodayLabel.text = String(totalPopulation[0].population ?? 0)
     
         self.tomorrowLabel.text = totalPopulation[1].date
-        self.valueTomorrowLabel.text = String(totalPopulation[1].population)
+        self.valueTomorrowLabel.text = String(totalPopulation[1].population ?? 0)
         viewForValuesBackground.isHidden = false
         }
     }

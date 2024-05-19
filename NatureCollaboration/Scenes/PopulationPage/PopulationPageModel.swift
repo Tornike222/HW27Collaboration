@@ -17,6 +17,6 @@ struct PopulationPageModel: Decodable {
 }
  
 struct TotalPopulation: Decodable {
-    let date: String
-    let population: Int
+    let date: String?
+    let population: Int?
 }
