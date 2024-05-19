@@ -147,4 +147,14 @@ final class SpecieCollectionViewCell: UICollectionViewCell {
             wikipediaButton.isHidden = true
         }
     }
+    
+    func configure(nameLabelText: String, preferredNameText: String, photoAuthorText: String, imageUrl: String, wikipediaUrl: String) {
+        nameLabel.text = nameLabelText
+        preferredName.text = preferredNameText
+        photoAuthor.text = photoAuthorText
+        let imageUrl = URL(string: imageUrl)
+        specieImage.loadImageWith(url: imageUrl!)
+        url = wikipediaUrl
+    }
+    
 }
