@@ -75,15 +75,6 @@ final class SpecieViewController: UIViewController {
     
     private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     
-    //MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .cyan
-        setupUI()
-        viewModel.delegate = self
-        customLoader.addLoaderIndicator(view: view)
-    }
-    
     //MARK: - Initialization VM
     init(viewModel: SpecieViewModel){
         self.viewModel = viewModel
@@ -93,6 +84,16 @@ final class SpecieViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .cyan
+        setupUI()
+        viewModel.delegate = self
+        customLoader.addLoaderIndicator(view: view)
+    }
+    
     //MARK: - SetupUI
     private func setupUI(){
         addBackgroundImage()
@@ -145,7 +146,7 @@ final class SpecieViewController: UIViewController {
         NSLayoutConstraint.activate([
             searchInputField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             searchInputField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            searchInputField.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 12),
+            searchInputField.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 5),
         ])
     }
     
@@ -191,12 +192,7 @@ extension SpecieViewController: UICollectionViewDataSource {
         specieCell?.parentViewController = self
         let currentSpecie = viewModel.specieModel?.results[indexPath.row]
         
-        specieCell?.nameLabel.text = ("Name: " +  (currentSpecie?.taxon.name ?? ""))
-        specieCell?.preferredName.text = ("Preferred Name: " +  (currentSpecie?.taxon.preferredCommonName ?? ""))
-        specieCell?.photoAuthor.text = ("Author: " +  (viewModel.extractName(from: currentSpecie?.taxon.defaultPhoto.attribution) ?? ""))
-        let imageUrl = URL(string: currentSpecie?.taxon.defaultPhoto.mediumUrl ?? "")!
-        specieCell?.specieImage.loadImageWith(url: imageUrl)
-        specieCell?.url = currentSpecie?.taxon.wikipediaUrl
+        specieCell?.configure(nameLabelText: ("Name: " +  (currentSpecie?.taxon.name ?? "")), preferredNameText: ("Preferred Name: " +  (currentSpecie?.taxon.preferredCommonName ?? "")), photoAuthorText: ("Author: " +  (viewModel.extractName(from: currentSpecie?.taxon.defaultPhoto.attribution) ?? "")), imageUrl: currentSpecie?.taxon.defaultPhoto.mediumUrl ?? "", wikipediaUrl: currentSpecie?.taxon.wikipediaUrl ?? "")
         
         return specieCell ?? UICollectionViewCell()
     }
