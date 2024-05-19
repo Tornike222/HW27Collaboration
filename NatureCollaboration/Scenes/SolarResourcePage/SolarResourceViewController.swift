@@ -101,10 +101,10 @@ final class SolarResourceViewController: UIViewController {
         addSolarLabel()
         addSolarTextField()
         addSolarButton()
+        addOutputBackgroundView()
         addSolarDataLabel()
         addTitleLabel()
         addDescriptionLabel()
-        addOutputBackgroundView()
     }
     
     private func addSolarBackground() {
@@ -146,7 +146,7 @@ final class SolarResourceViewController: UIViewController {
     private func addSolarButton() {
         view.addSubview(solarButton)
         NSLayoutConstraint.activate([
-            solarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 340),
+            solarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 360),
             solarButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             solarButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             solarButton.heightAnchor.constraint(equalToConstant: 50)
@@ -158,6 +158,7 @@ final class SolarResourceViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.solarDataLabel.text = solarDataText
                 }
+                self?.outputBackgroundView.isHidden = false
             }
         }), for: .touchUpInside)
     }
@@ -166,8 +167,8 @@ final class SolarResourceViewController: UIViewController {
         view.addSubview(solarDataLabel)
         NSLayoutConstraint.activate([
             solarDataLabel.topAnchor.constraint(equalTo: solarButton.bottomAnchor, constant: 50),
-            solarDataLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            solarDataLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+            solarDataLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
+            solarDataLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35)
         ])
         solarDataLabel.textColor = .white
         solarDataLabel.font = UIFont(name: "FiraGO-Medium", size: 16)
