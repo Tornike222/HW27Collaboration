@@ -4,6 +4,8 @@ import NetworkPackage
 protocol WeatherViewModelDelegate: AnyObject {
     func updateWeatherInfo()
     func showAlert(with message: String)
+    func startAnimation()
+    func stopAnimation()
 }
 
 struct WeatherDataFormatted {
@@ -18,14 +20,17 @@ final class WeatherViewModel {
     var weatherData: WeatherForecast?
     weak var delegate: WeatherViewModelDelegate?
     
-    private(set) var weatherInfo: [WeatherDataFormatted] = [] {
+    var weatherInfo: [WeatherDataFormatted] = [] {
         didSet {
             delegate?.updateWeatherInfo()
+            delegate?.stopAnimation()
+            
         }
     }
     var errorMessage: String? {
         didSet {
             self.showError?()
+            
         }
     }
     
@@ -43,8 +48,11 @@ final class WeatherViewModel {
               (-90...90).contains(latitude),
               (-180..<180).contains(longitude) else {
             delegate?.showAlert(with: "Invalid input data. Latitude must be between -90 and 90. Longitude must be between -180 and 180.")
+            
+            ()
             return
         }
+        delegate?.startAnimation()
         fetchWeatherData(latitude: String(latitude), longitude: String(longitude))
     }
     
@@ -56,6 +64,7 @@ final class WeatherViewModel {
             guard let result = result else {
                 self?.delegate?.showAlert(with: "No data received")
                 return
+                
             }
             self?.processWeatherData(result)
         }
@@ -74,4 +83,3 @@ final class WeatherViewModel {
         }
     }
 }
-
