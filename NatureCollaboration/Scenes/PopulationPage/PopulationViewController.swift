@@ -67,6 +67,7 @@ final class PopulationViewController: UIViewController {
         label.backgroundColor = .clear
         label.font = UIFont(name: "FiraGO-Medium", size: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
         return label
     }()
     
@@ -113,6 +114,8 @@ final class PopulationViewController: UIViewController {
         return viewForValuesBackground
     }()
     
+    private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+
     //MARK: - Initialization VM
     init(viewModel: PopulationViewModel){
         self.viewModel = viewModel
@@ -129,7 +132,10 @@ final class PopulationViewController: UIViewController {
         view.backgroundColor = .cyan
         setupUI()
         viewModel.delegate = self
+        customLoader.addLoaderIndicator(view: view)
+
     }
+    
     //MARK: - Setup UI Components
     private func setupUI() {
         addBackgroundImage()
@@ -189,7 +195,6 @@ final class PopulationViewController: UIViewController {
             countryNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             countryNameTextField.topAnchor.constraint(equalTo: countryNameLabel.bottomAnchor, constant: 5),
             countryNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            
         ])
     }
     
@@ -259,10 +264,18 @@ final class PopulationViewController: UIViewController {
             valueTomorrowLabel.trailingAnchor.constraint(equalTo: viewForValuesBackground.trailingAnchor, constant: -20),
         ])
     }
-
 }
+
 //MARK: - PopulationViewModelDelegate extension
 extension PopulationViewController: PopulationViewModelDelegate {
+    func stopLoading() {
+        self.customLoader.stopAnimation()
+    }
+    
+    func startLoading() {
+        self.customLoader.startAnimation()
+    }
+    
     func updatePopulation(with totalPopulation: [TotalPopulation]) {
         self.todayLabel.text = totalPopulation[0].date
         self.valueTodayLabel.text = String(totalPopulation[0].population ?? 0)
@@ -270,6 +283,7 @@ extension PopulationViewController: PopulationViewModelDelegate {
         self.tomorrowLabel.text = totalPopulation[1].date
         self.valueTomorrowLabel.text = String(totalPopulation[1].population ?? 0)
         viewForValuesBackground.isHidden = false
+        countryLabel.isHidden = false
         }
     }
 
