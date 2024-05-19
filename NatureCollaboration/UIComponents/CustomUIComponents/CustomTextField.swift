@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
     //MARK: - Override
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,9 +19,9 @@ class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - Functions
-    func setupTextField(){
+    private func setupTextField(){
         translatesAutoresizingMaskIntoConstraints = false
-        font = UIFont(name: "FiraGO-Regular", size: 15)
+        font = UIFont(name: "FiraGO-Medium", size: 15)
         backgroundColor = .clear
         textColor = .white
         attributedPlaceholder = NSAttributedString(string: "default", attributes: [
@@ -35,7 +35,7 @@ class CustomTextField: UITextField {
 
     }
 
-    func touch(){
+    private func touch(){
         addAction(UIAction(handler: { _ in
             self.textFieldTouchedDown()
         }), for: .editingDidBegin)
@@ -45,11 +45,11 @@ class CustomTextField: UITextField {
         }), for: .editingDidEnd)
     }
     
-    func textFieldTouchedDown(){
+    private func textFieldTouchedDown(){
         layer.borderColor = #colorLiteral(red: 0.006170265842, green: 0.4581519961, blue: 0.999124825, alpha: 1)
     }
     
-    func textFieldTouchedUp(){
+    private func textFieldTouchedUp(){
         layer.borderColor = #colorLiteral(red: 0.5529411435, green: 0.5529412031, blue: 0.5529411435, alpha: 1)
     }
     
