@@ -78,15 +78,18 @@ final class WeatherViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private let customLoader = CustomLoader(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    
     // MARK: - Initializers
     init(viewModel: WeatherViewModel){
-            self.viewModel = viewModel
-            super.init(nibName: nil, bundle: nil)
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -98,6 +101,7 @@ final class WeatherViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: "WeatherCell")
+        customLoader.addLoaderIndicator(view: view)
     }
     
     // MARK: - UI Setup
@@ -239,6 +243,14 @@ extension WeatherViewController: WeatherViewModelDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func startAnimation() {
+        self.customLoader.startAnimation()
+    }
+    
+    func stopAnimation() {
+        self.customLoader.stopAnimation()
     }
     
     func showAlert(with message: String) {
