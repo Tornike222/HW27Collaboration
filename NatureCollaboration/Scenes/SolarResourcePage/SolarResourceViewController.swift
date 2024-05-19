@@ -229,13 +229,13 @@ extension SolarResourceViewController: SolarResourceViewModelDelegate {
     func showError(_ error: String) {
         presentAlert(title: "Error", message: error)
     }
-        func startAnimation() {
-            self.customLoader.startAnimation()
-        }
-        func stopAnimation() {
-            self.customLoader.stopAnimation()
-        }
+    func startAnimation() {
+        self.customLoader.startAnimation()
     }
+    func stopAnimation() {
+        self.customLoader.stopAnimation()
+    }
+}
 
 
 
